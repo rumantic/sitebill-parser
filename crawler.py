@@ -28,9 +28,9 @@ print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
       ", mongo_user = ", mongo_user,
       ", mongo_pass = ", mongo_pass,
       ", mongo_port = ", mongo_port)
-print(parser_collection.find_one())
-print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "after get next record")
-exit()
+#print(parser_collection.find_one())
+#print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "after get next record")
+#exit()
 
 headers = {
     'x-uid': '62b420846162a'
