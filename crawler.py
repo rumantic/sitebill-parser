@@ -3,7 +3,6 @@ import requests
 from pymongo import MongoClient
 from datetime import datetime
 
-#mongo_host = os.environ.get('MONGO_HOST', '192.168.1.37')
 mongo_host = os.environ.get('MONGO_HOST', 'not_defined')
 mongo_user = os.environ.get('MONGO_USER', '')
 mongo_pass = os.environ.get('MONGO_PASS', '')
@@ -12,17 +11,25 @@ if mongo_host == 'not_defined':
     print('mongo_host not defined')
     exit()
 
-client = MongoClient(mongo_host,
-                     username=mongo_user,
-                     password=mongo_pass,
-                     port=mongo_port)
+client = MongoClient('mongodb://%s:%s@%s:%s/?authSource=admin&readPreference=primary&appname=MongoDB&ssl=false' % (mongo_user, mongo_pass, mongo_host, mongo_port))
+
+#client = MongoClient(mongo_host,
+#                     username=mongo_user,
+#                     password=mongo_pass,
+#                     port=mongo_port)
+
+
 db = client['youla']
 parser_collection = db['parsed']
 
-print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "crawler start, mongo_host = ", mongo_host)
-#print(parser_collection.find_one())
-#print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "after get next record")
-#exit()
+print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+      "crawler start, mongo_host = ", mongo_host,
+      ", mongo_user = ", mongo_user,
+      ", mongo_pass = ", mongo_pass,
+      ", mongo_port = ", mongo_port)
+print(parser_collection.find_one())
+print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "after get next record")
+exit()
 
 headers = {
     'x-uid': '62b420846162a'
