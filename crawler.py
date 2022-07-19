@@ -17,6 +17,7 @@ client = MongoClient('mongodb://%s:%s@%s:%s/?authSource=admin&readPreference=pri
 #                     username=mongo_user,
 #                     password=mongo_pass,
 #                     port=mongo_port)
+#test
 
 
 db = client['youla']

@@ -8,6 +8,7 @@ MAINTAINER kondin@etown.ru
 #ENV MONGO_PASS=""
 
 RUN apt-get -y install mc
+RUN apt-get -y install git
 
 
 COPY . .
