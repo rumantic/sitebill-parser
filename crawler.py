@@ -13,21 +13,16 @@ if mongo_host == 'not_defined':
 
 client = MongoClient('mongodb://%s:%s@%s:%s/?authSource=admin&readPreference=primary&appname=MongoDB&ssl=false' % (mongo_user, mongo_pass, mongo_host, mongo_port))
 
-#client = MongoClient(mongo_host,
-#                     username=mongo_user,
-#                     password=mongo_pass,
-#                     port=mongo_port)
-#test
-
 
 db = client['youla']
 parser_collection = db['parsed']
 
-print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-      "crawler start, mongo_host = ", mongo_host,
-      ", mongo_user = ", mongo_user,
-      ", mongo_pass = ", mongo_pass,
-      ", mongo_port = ", mongo_port)
+#print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+#      "crawler start, mongo_host = ", mongo_host,
+#      ", mongo_user = ", mongo_user,
+#      ", mongo_pass = ", mongo_pass,
+#      ", mongo_port = ", mongo_port)
+
 #print(parser_collection.find_one())
 #print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "after get next record")
 #exit()
