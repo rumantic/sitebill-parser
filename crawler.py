@@ -10,8 +10,10 @@ mongo_port = int(os.environ.get('MONGO_PORT', 27017))
 if mongo_host == 'not_defined':
     print('mongo_host not defined')
     exit()
-
-client = MongoClient('mongodb://%s:%s@%s:%s/?authSource=admin&readPreference=primary&appname=MongoDB&ssl=false' % (mongo_user, mongo_pass, mongo_host, mongo_port))
+if mongo_host == '192.168.1.37':
+    client = MongoClient(mongo_host, mongo_port)
+else:
+    client = MongoClient('mongodb://%s:%s@%s:%s/?authSource=admin&readPreference=primary&appname=MongoDB&ssl=false' % (mongo_user, mongo_pass, mongo_host, mongo_port))
 
 
 db = client['youla']
@@ -63,7 +65,7 @@ def get_request_data ( page, sha256Hash ):
                 "distanceMax": None
             },
             "search": "",
-            "cursor": "{\"page\":"+str(page)+",\"totalProductsCount\":100}"
+            "cursor": ""
         },
         "extensions": {
             "persistedQuery": {
@@ -74,7 +76,7 @@ def get_request_data ( page, sha256Hash ):
     }
     return data
 
-for page in range(1,3):
+for page in range(1,2):
     data = get_request_data(page, "6e7275a709ca5eb1df17abfb9d5d68212ad910dd711d55446ed6fa59557e2602")
     #print(data)
     #response = data;
