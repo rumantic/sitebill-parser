@@ -57,10 +57,10 @@ def get_request_data ( page, sha256Hash ):
             ],
             "datePublished": None,
             "location": {
-                "latitude": 61.254032,
-                "longitude": 73.3964,
-                "city": None,
-                "distanceMax": 10000
+                "latitude": None,
+                "longitude": None,
+                "city": "576d061ad53f3d80945f9928",
+                "distanceMax": None
             },
             "search": "",
             "cursor": "{\"page\":"+str(page)+",\"totalProductsCount\":100}"
