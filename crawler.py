@@ -1,33 +1,11 @@
-import os
 import requests
-from pymongo import MongoClient
 from datetime import datetime
-
-mongo_host = os.environ.get('MONGO_HOST', 'not_defined')
-mongo_user = os.environ.get('MONGO_USER', '')
-mongo_pass = os.environ.get('MONGO_PASS', '')
-mongo_port = int(os.environ.get('MONGO_PORT', 27017))
-if mongo_host == 'not_defined':
-    print('mongo_host not defined')
-    exit()
-if mongo_host == '192.168.1.37':
-    client = MongoClient(mongo_host, mongo_port)
-else:
-    client = MongoClient('mongodb://%s:%s@%s:%s/?authSource=admin&readPreference=primary&appname=MongoDB&ssl=false' % (mongo_user, mongo_pass, mongo_host, mongo_port))
+from lib.mongo import *
 
 
+client = get_connection()
 db = client['youla']
 parser_collection = db['parsed']
-
-#print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-#      "crawler start, mongo_host = ", mongo_host,
-#      ", mongo_user = ", mongo_user,
-#      ", mongo_pass = ", mongo_pass,
-#      ", mongo_port = ", mongo_port)
-
-#print(parser_collection.find_one())
-#print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "after get next record")
-#exit()
 
 headers = {
     'x-uid': '62b420846162a'

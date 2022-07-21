@@ -1,3 +1,4 @@
 
 .idea/
 example
+lib/__pycache__/mongo.cpython-37.pyc
