@@ -29,7 +29,7 @@ def get_request_data ( page, sha256Hash ):
                 {
                     "slug": "categories",
                     "value": [
-                        "prodaja-kvartiri"
+                        "nedvijimost"
                     ],
                     "from": None,
                     "to": None
@@ -58,7 +58,12 @@ for page in range(1,2):
     data = get_request_data(page, "6e7275a709ca5eb1df17abfb9d5d68212ad910dd711d55446ed6fa59557e2602")
     #print(data)
     #response = data;
-    response = requests.post("https://api-gw.youla.io/federation/graphql", json=data, headers=headers).json()
+    try:
+        response = requests.post("https://api-gw.youla.io/federation/graphql", json=data, headers=headers).json()
+    except Exception as e:
+        print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), ' error on youla connection ' + str(e))
+        exit()
+    #print(response)
     for item in response['data']['feed']['items']:
         #print(item)
         item_new = item
